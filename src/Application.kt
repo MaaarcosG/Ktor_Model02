@@ -19,8 +19,6 @@ fun Application.module(testing: Boolean = false) {
     task()
 }
 
-data class Item(val id: Long?, val task: String?, val complete: Boolean?)
-data class Error(val message: String?)
 val task_list = mutableListOf<Item>()
 
 fun Application.task(){
@@ -47,7 +45,7 @@ fun Application.task(){
                             task_list[task_list.indexOf(data)] = data
                             call.respond(HttpStatusCode.OK)
                         }
-                        false -> call.respond(HttpStatusCode.NotFound, Error("User with id $id not found"))
+                        false -> call.respond(HttpStatusCode.NotFound, Error("Task with id $id not found"))
                     }
             }
             /*delete*/
